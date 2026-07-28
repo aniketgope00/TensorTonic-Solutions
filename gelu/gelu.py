@@ -1,12 +1,13 @@
-import math
 import numpy as np
+import math
 
 def gelu(x):
     """
-    Compute the Gaussian Error Linear Unit using the high-precision 
-    approximation used in modern neural networks.
+    Compute the Gaussian Error Linear Unit (exact version using erf).
+    x: list or np.ndarray
+    Return: np.ndarray of same shape (dtype=float)
     """
-    x              = np.array(x)
-    vectorized_erf = np.vectorize(math.erf)
-    erf            = vectorized_erf(x/np.sqrt(2))
-    return (0.5 * x) * ( 1 + erf) 
+    # Write code here
+    x = np.asarray(x)
+    vec_erf = np.vectorize(math.erf)
+    return (0.5 * x) * (1 + vec_erf(x / math.sqrt(2)))
